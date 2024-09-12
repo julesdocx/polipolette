@@ -19,11 +19,11 @@ const mono = IBM_Plex_Mono({
   weight: ['500', '700'],
 })
 
-const sans = Inter({
-  variable: '--font-family-sans',
-  subsets: ['latin'],
-  weight: ['500', '700', '800'],
-})
+// const sans = Inter({
+//   variable: '--font-family-sans',
+//   subsets: ['latin'],
+//   weight: ['500', '700', '800'],
+// })
 
 const serif = PT_Serif({
   variable: '--font-family-serif',
@@ -42,7 +42,7 @@ export default function App({
       <style jsx global>
         {`
           :root {
-            --font-family-sans: ${sans.style.fontFamily};
+            --font-family-sans: neue-haas-grotesk-display, sans-serif;
             --font-family-serif: ${serif.style.fontFamily};
             --font-family-mono: ${mono.style.fontFamily};
           }
