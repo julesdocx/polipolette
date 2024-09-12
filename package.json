@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/react": "18.2.55",
+    "agrippa": "^2.0.4",
     "autoprefixer": "10.4.17",
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
