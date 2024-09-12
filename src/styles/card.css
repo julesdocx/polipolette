@@ -34,12 +34,6 @@
   color: #aaa;
   font-size: 0.9rem;
 }
-
-.card:hover {
-  transform: scale(1.05); /* Pop-out effect on hover */
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-}
-
 .card--expanded {
   position: fixed;
   top: 0;

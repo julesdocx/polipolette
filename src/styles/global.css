@@ -62,3 +62,8 @@ html {
 body {
   margin: 0;
 }
+
+.container {
+  margin: 0px auto;
+  max-width: 600px;
+}
