@@ -1,8 +1,7 @@
 .gallery {
     margin: 0px auto;
     margin-top: 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Dynamic column sizing */
-  grid-gap: 0px; /* Space between the cards */
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+    grid-gap: 0px; 
 }
