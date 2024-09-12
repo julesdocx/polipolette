@@ -46,8 +46,8 @@ export default function IndexPage(
           posts.map((post, index) => (
           <div key={post._id}
               className={`card ${loaded ? 'fade-in' : ''}`}
-              style={{ animationDelay: `${index * 100}ms` }}
-          ><Card key={post._id} post={post} /></div>
+              style={{ animationDelay: `${index * 100}ms` }}>
+                <Card key={post._id} post={post} /></div>
           ))
         ) : (
           <div>
