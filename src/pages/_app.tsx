@@ -1,4 +1,6 @@
 import '~/styles/global.css'
+import '~/styles/gallery.css'
+import '~/styles/card.css'
 
 import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
