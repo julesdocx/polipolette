@@ -17,10 +17,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
       <div className="overlay__content">
         {posts.map((post) => {
           // Safely extract the post title from the slug
-          const slugParts = post.slug.current.split('_');
-          const postTitle = slugParts[1] ? slugParts[1].replace(/-/g, ' ') : 'Untitled Post';
-          console.log(slugParts)
-          console.log(postTitle)
+          const postTitle = post.title ? post.title : " ";
 
           return (
             <div key={post._id} className="overlay__item">

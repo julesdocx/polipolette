@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps<
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const posts = await getPosts(client)
+  const posts = (await getPosts(client)).reverse()
 
   return {
     props: {
@@ -42,9 +42,8 @@ export default function IndexPage(
 
   // Function to handle card click
   const handleCardClick = (post: Post) => {
-    const projectTitle = post.slug.current.split('_')[0].replace(/-/g, ' ');
-    const relatedPosts = posts.filter((p) => p.slug.current.startsWith(`${post.slug.current.split('_')[0]}`));
-    console.log(relatedPosts)
+    const projectTitle = post.excerpt;
+    const relatedPosts = posts.filter((p) => p.excerpt === projectTitle);
     setSelectedProjectTitle(projectTitle);
     setOverlayPosts(relatedPosts);
   };
