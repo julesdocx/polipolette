@@ -1,6 +1,7 @@
 import '~/styles/global.css'
 import '~/styles/gallery.css'
 import '~/styles/card.css'
+import '~/styles/overlay.css'
 
 import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
@@ -19,11 +20,11 @@ const mono = IBM_Plex_Mono({
   weight: ['500', '700'],
 })
 
-// const sans = Inter({
-//   variable: '--font-family-sans',
-//   subsets: ['latin'],
-//   weight: ['500', '700', '800'],
-// })
+const sans = Inter({
+  variable: '--font-family-sans',
+  subsets: ['latin'],
+  weight: ['500', '700', '800'],
+})
 
 const serif = PT_Serif({
   variable: '--font-family-serif',
@@ -42,7 +43,7 @@ export default function App({
       <style jsx global>
         {`
           :root {
-            --font-family-sans: neue-haas-grotesk-display, sans-serif;
+            --font-family-sans: ${sans.style.fontFamily};
             --font-family-serif: ${serif.style.fontFamily};
             --font-family-mono: ${mono.style.fontFamily};
           }
