@@ -57,21 +57,23 @@ export default function IndexPage(
 
   return (
     <Container>
-      <section className="gallery">
-        {posts.length ? (
-          posts.map((post, index) => (
-            <div
-              key={post._id}
-              className={`card ${loaded ? 'fade-in' : ''}`}
-              style={{ animationDelay: `${index * 100}ms` }}
-              onClick={() => handleCardClick(post)}  // Handle card click
-            >
-              <Card post={post} />
-            </div>
-          ))
-        ) : (
-          <div>No posts available</div>
-        )}
+      <section className='gallery__container'>
+        <div className="gallery">
+          {posts.length ? (
+            posts.map((post, index) => (
+              <div
+                key={post._id}
+                className={`card ${loaded ? 'fade-in' : ''}`}
+                style={{ animationDelay: `${index * 100}ms` }}
+                onClick={() => handleCardClick(post)}  // Handle card click
+              >
+                <Card post={post} />
+              </div>
+            ))
+          ) : (
+            <div>No posts available</div>
+          )}
+        </div>
       </section>
 
       {overlayPosts && selectedProjectTitle && (
