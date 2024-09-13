@@ -57,14 +57,14 @@ export default function IndexPage(
   const useKeypress = (key: string, action: Function) => {
 		useEffect(() => {
 		  const onKeyup = (e) => {
-			if (e.key === key) closeOverlay();
+			if (e.key === key) action();
 		  }
 		  window.addEventListener("keyup", onKeyup);
 		  return () => window.removeEventListener("keyup", onKeyup);
 		});
 	}
 //for activate the function 
-useKeypress("Escape", ()=>callback(false));
+useKeypress("Escape", ()=>closeOverlay());
 
   // Function to handle card click
   const handleCardClick = (post: Post) => {
