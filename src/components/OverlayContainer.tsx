@@ -11,9 +11,10 @@ interface OverlayContainerProps {
 }
 
 export default function OverlayContainer({ posts, projectTitle, onClose }: OverlayContainerProps) {
+
   return (
     <div className="overlay">
-      <button className="overlay__close" onClick={onClose}>Close</button>
+      <button className="overlay__close" onClick={onClose}>esc</button>
       <div className="overlay__content">
         {posts.map((post) => {
           // Safely extract the post title from the slug
@@ -26,7 +27,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
                     <Image
                       src={urlForImage(post.mainImage).url()}
                       alt={postTitle}
-                      quality={60}
+                      quality={90}
                       priority={true}
                       // fill
                       width={(window.innerWidth - 200) / posts.length}

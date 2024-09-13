@@ -7,7 +7,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.01);
   z-index: 0;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,13 +19,19 @@
   font-weight: 700;
   position: absolute;
   top: 20px;
-  right: 20px;
-  padding: 10px 20px;
+  left: 20px;
+  padding: 15px 30px 5px 8px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  text-decoration: underline;
+  font-weight: 100;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.overlay__close:hover {
+  background-color: black;
+  color: white;
 }
 
 .overlay__content {
@@ -69,16 +75,10 @@
   object-fit: contain;  /* Maintain aspect ratio and prevent cutting off */
 }
 
-.overlay__postname {
-  color: black;
-  font-size: 14px;
-  font-weight: 200;
-}
-
 .overlay__item h3 {
   margin-top: 10px;
   color: black;
-  font-size: 18px;
+  /* font-size: 18px; */
   text-align: center;
 }
 
@@ -88,4 +88,11 @@
   font-size: 14px;
   color: black;
   text-align: center;
+}
+
+
+.overlay__postname {
+  color: black;
+  font-size: 14px;
+  font-weight: 200;
 }

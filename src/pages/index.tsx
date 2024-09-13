@@ -16,7 +16,20 @@ export const getStaticProps: GetStaticProps<
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const posts = (await getPosts(client)).reverse()
+  const allPosts = await getPosts(client);
+
+  const shuffleArray = (arr) =>
+  [...Array(arr.length)]
+    .map((_, i) => Math.floor(Math.random() * (i + 1)))
+    .reduce(
+      (shuffled, r, i) =>
+        shuffled.map((num, j) =>
+          j === i ? shuffled[r] : j === r ? shuffled[i] : num
+        ),
+      arr
+    );
+
+  const posts = shuffleArray(allPosts);
 
   return {
     props: {
@@ -34,11 +47,24 @@ export default function IndexPage(
   const [loaded, setLoaded] = useState(false);
   const [overlayPosts, setOverlayPosts] = useState<Post[] | null>(null);
   const [selectedProjectTitle, setSelectedProjectTitle] = useState<string | null>(null);
+  const [hoverState, setHoverState] = useState<Element[] | null>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(timeoutId);
   }, []);
+
+  const useKeypress = (key: string, action: Function) => {
+		useEffect(() => {
+		  const onKeyup = (e) => {
+			if (e.key === key) closeOverlay();
+		  }
+		  window.addEventListener("keyup", onKeyup);
+		  return () => window.removeEventListener("keyup", onKeyup);
+		});
+	}
+//for activate the function 
+useKeypress("Escape", ()=>callback(false));
 
   // Function to handle card click
   const handleCardClick = (post: Post) => {
@@ -52,7 +78,31 @@ export default function IndexPage(
   const closeOverlay = () => {
     setOverlayPosts(null);
     setSelectedProjectTitle(null);
-  };
+  };  
+
+  const handleMouseOver = (post: Post) => {
+    const projectTitle = post.excerpt;
+    const relatedPosts = posts.filter((p) => p.excerpt === projectTitle);
+    console.log(document.querySelectorAll(`[data-id="${projectTitle}"]`));
+    const postElements = document.querySelectorAll(`[data-id="${projectTitle}"]`)
+    const allCards = document.querySelectorAll('.gallery__item');
+    const allCardsArray = Array.from(allCards);
+    const postArray = Array.from(postElements);
+    const focusedPosts = allCardsArray.filter(card => !postArray.includes(card));
+    focusedPosts.forEach( (element) => {
+      element.classList.add('blur');
+    })
+    setHoverState(focusedPosts);
+  }
+
+  const handleMouseOut = () => {
+    if (hoverState && hoverState !== null ) {
+      hoverState.forEach((element) => {
+        element.classList.remove('blur');
+      })
+    }
+    setHoverState(null);
+  }
 
   return (
     <Container>
@@ -61,10 +111,13 @@ export default function IndexPage(
           {posts.length ? (
             posts.map((post, index) => (
               <div
+                data-id={post.excerpt}
                 key={post._id}
-                className={`card ${loaded ? 'fade-in' : ''}`}
+                className={`card gallery__item ${loaded ? 'fade-in' : ''}`}
                 style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => handleCardClick(post)}  // Handle card click
+                onMouseEnter={() => handleMouseOver(post)} 
+                onMouseLeave={() => handleMouseOut()}
               >
                 <Card post={post} />
               </div>
