@@ -28,6 +28,8 @@
   font-weight: 100;
   border: 1px solid black;
   border-radius: 5px;
+  z-index: 9999px;
+  background-color: white;
 }
 .overlay__close:hover {
   background-color: black;
@@ -42,7 +44,7 @@
   width: 100%;
   height: 80%;  /* Allow enough space for images */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .overlay__item {
@@ -95,4 +97,17 @@
   color: black;
   font-size: 14px;
   font-weight: 200;
+}
+
+
+.flex-center {
+    justify-content: center;
+}
+
+
+
+@media (min-width: 800px) {  
+  .overlay__content {
+    justify-content: center;
+  }
 }

@@ -15,7 +15,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
   return (
     <div className="overlay">
       <button className="overlay__close" onClick={onClose}>esc</button>
-      <div className="overlay__content">
+      <div className={`overlay__content ${posts.length == 1 ? "flex-center" : ""}`}>
         {posts.map((post) => {
           // Safely extract the post title from the slug
           const postTitle = post.title ? post.title : " ";
@@ -30,7 +30,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
                       quality={90}
                       priority={true}
                       // fill
-                      width={(window.innerWidth - 200) / posts.length}
+                      width={window.innerWidth >= 800 ? ((window.innerWidth - 200) / posts.length) : (window.innerWidth -200)}
                       height={500}
                       // sizes="(max-width: 768px) 100vw, 50vw"   // Responsive sizes 
                       // style={{ objectFit: 'contain' }}  // Maintain aspect ratio without cutting offl
