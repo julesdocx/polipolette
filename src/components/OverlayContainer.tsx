@@ -29,7 +29,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
                       quality={60}
                       priority={true}
                       // fill
-                      width={1500 / posts.length}
+                      width={(window.innerWidth - 200) / posts.length}
                       height={500}
                       // sizes="(max-width: 768px) 100vw, 50vw"   // Responsive sizes 
                       // style={{ objectFit: 'contain' }}  // Maintain aspect ratio without cutting offl
