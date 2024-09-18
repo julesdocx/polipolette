@@ -28,5 +28,8 @@
   .gallery__container {
     align-items: flex-start
   }
+  .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+  }
 }
 

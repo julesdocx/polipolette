@@ -133,7 +133,7 @@ const applyBlurEffect = (highlightedPost: Post) => {
         const nextIndex = (currentHighlightIndex + 1) % posts.length;
         applyBlurEffect(posts[nextIndex]);
         setCurrentHighlightIndex(nextIndex);
-      }, 300);
+      }, 500);
 
       return () => clearInterval(interval); // Clean up on unmount
     }
