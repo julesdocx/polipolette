@@ -40,6 +40,7 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
+
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
@@ -48,6 +49,16 @@ export default function IndexPage(
   const [overlayPosts, setOverlayPosts] = useState<Post[] | null>(null);
   const [selectedProjectTitle, setSelectedProjectTitle] = useState<string | null>(null);
   const [hoverState, setHoverState] = useState<Element[] | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentHighlightIndex, setCurrentHighlightIndex] = useState(0);
+
+  useEffect(() => {
+    // Detect mobile screen width (less than 600px)
+    const handleResize = () => setIsMobile(window.innerWidth < 600);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setLoaded(true), 100);
@@ -81,19 +92,31 @@ useKeypress("Escape", ()=>closeOverlay());
   };  
 
   const handleMouseOver = (post: Post) => {
-    const projectTitle = post.excerpt;
-    const relatedPosts = posts.filter((p) => p.excerpt === projectTitle);
-    console.log(document.querySelectorAll(`[data-id="${projectTitle}"]`));
-    const postElements = document.querySelectorAll(`[data-id="${projectTitle}"]`)
-    const allCards = document.querySelectorAll('.gallery__item');
-    const allCardsArray = Array.from(allCards);
-    const postArray = Array.from(postElements);
-    const focusedPosts = allCardsArray.filter(card => !postArray.includes(card));
-    focusedPosts.forEach( (element) => {
-      element.classList.add('blur');
-    })
-    setHoverState(focusedPosts);
+    if (isMobile) return; // Disable manual hover effect on mobile when auto-blur is running
+    applyBlurEffect(post);
   }
+
+const applyBlurEffect = (highlightedPost: Post) => {
+  const projectTitle = highlightedPost.excerpt;
+  const postElements = document.querySelectorAll(`[data-id="${projectTitle}"]`);
+  const allCards = document.querySelectorAll('.gallery__item');
+  const allCardsArray = Array.from(allCards);
+  const postArray = Array.from(postElements);
+
+  // Remove blur from the highlighted posts
+  allCardsArray.forEach((element) => {
+    element.classList.remove('blur');
+  });
+
+  // Apply blur to all other posts except the highlighted ones
+  const blurredPosts = allCardsArray.filter((card) => !postArray.includes(card));
+  blurredPosts.forEach((element) => {
+    element.classList.add('blur');
+  });
+
+  setHoverState(blurredPosts);
+};
+
 
   const handleMouseOut = () => {
     if (hoverState && hoverState !== null ) {
@@ -103,6 +126,19 @@ useKeypress("Escape", ()=>closeOverlay());
     }
     setHoverState(null);
   }
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        const nextIndex = (currentHighlightIndex + 1) % posts.length;
+        applyBlurEffect(posts[nextIndex]);
+        setCurrentHighlightIndex(nextIndex);
+      }, 300);
+
+      return () => clearInterval(interval); // Clean up on unmount
+    }
+  }, [isMobile, currentHighlightIndex, posts]);
+
 
   return (
     <Container>

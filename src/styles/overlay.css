@@ -5,17 +5,20 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.01);
+  /* background-color: rgb(255, 255, 255); */
   z-index: 0;
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .overlay__close {
+  /* background-color: rgba(255, 255, 255, 0.8 0); */
+  /* backdrop-filter: blur(100px); */
   font-weight: 700;
   position: absolute;
   top: 20px;
@@ -25,24 +28,28 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+  z-index: 100;
   font-weight: 100;
   /* border: 1px solid black; */
   border-radius: 5px;
   z-index: 9999px;
   background-color: black;
   color: white;
+  cursor: auto;
 }
 .overlay__close:hover {
   background-color: rgb(28, 28, 28);
 }
 
 .overlay__content {
+  /* background-color: white; */
+  flex-direction: column;
   display: flex;
   gap: 20px;
   overflow-x: auto;
   padding: 20px;
-  width: 100%;
-  height: 80%;  /* Allow enough space for images */
+  min-width: 100%;
+  height: 100%; 
   align-items: center;
   justify-content: flex-start;
 }
@@ -54,20 +61,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 26px;
   max-height: 100%;  /* Ensure images fit within the height */
 }
 
 .overlay__img {
-  position: relative;
+  /* position: relative; */
   flex-grow: 1;  /* Allow image container to grow */
   width: auto;
   height: 100%;  /* Set dynamic height */
   display: flex;
+  padding-bottom: 12px;
   align-items: center;
   justify-content: center;
 }
 .overlay__blur {
-  filter: blur(50px);
+  /* filter: blur(50px); */
   mix-blend-mode:darken;
   position: absolute;
   z-index: -10;
@@ -78,22 +87,23 @@
 }
 
 .overlay__item h3 {
-  margin-top: 10px;
   color: black;
   /* font-size: 18px; */
   text-align: center;
 }
 
 .overlay__project-title {
+  backdrop-filter: blur(8px);
   font-weight: 200;
-  margin-top: 20px;
   font-size: 14px;
+  padding: 0px;
   color: black;
   text-align: center;
 }
 
 
 .overlay__postname {
+  margin: 0px;
   color: black;
   font-size: 14px;
   font-weight: 200;
@@ -107,7 +117,18 @@
 
 
 @media (min-width: 800px) {  
+  .overlay {
+        background-color: transparent;
+  }
   .overlay__content {
     justify-content: center;
+      flex-direction: row;
+    overflow: hidden;
+
   }
+  .overlay__img {
+    height: 300px;
+  }
+
+  
 }

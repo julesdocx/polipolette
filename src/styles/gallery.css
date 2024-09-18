@@ -1,7 +1,7 @@
 .gallery {
     margin: 0px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); 
     grid-gap: 0px; 
     width: 100%;
 }
@@ -19,8 +19,14 @@
 }
 
 
-@media (max-height: 900px) {  
+@media (max-height: 800px) {  
   .gallery__container {
     align-items: flex-start
   }
 }
+@media (max-width: 600px) {  
+  .gallery__container {
+    align-items: flex-start
+  }
+}
+

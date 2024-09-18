@@ -95,3 +95,13 @@
     transform: translateX(10px);
   }
 }
+
+@media (max-width: 600px) {  
+  .card {
+    opacity: 1 !important;
+  }
+  .blur {
+    /* opacity: 40% !important; */
+    filter: blur(8px);
+  }
+}
