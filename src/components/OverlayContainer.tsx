@@ -37,6 +37,7 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
                       quality={60}
                       priority={true}
                       // fill
+                      // width={window.innerWidth >= 800 ? ((window.innerWidth - 200) / posts.length) : (window.innerWidth -200)}
                       width={window.innerWidth >= 800 ? ((window.innerWidth - 200) / posts.length) : (window.innerWidth -200)}
                       height={0}
                       // sizes="(max-width: 768px) 100vw, 50vw"   // Responsive sizes 
@@ -51,9 +52,9 @@ export default function OverlayContainer({ posts, projectTitle, onClose }: Overl
                       width={window.innerWidth >= 800 ? ((window.innerWidth - 200) / posts.length) : (window.innerWidth -200)}
                       height={0}
                     />
-                    <h3 className='overlay__postname'>{postTitle}</h3>
                 </div>
               )}
+              <h3 className='overlay__postname'>{postTitle}</h3>
             </div>
           );
         })}

@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* background-color: rgb(255, 255, 255); */
   z-index: 0;
   backdrop-filter: blur(8px);
@@ -45,31 +45,31 @@
   /* background-color: white; */
   flex-direction: column;
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
+  overflow-y: scroll;
   padding: 20px;
-  min-width: 100%;
-  height: 100%; 
+  width: 100%;
+  /* height: 100%;  */
   align-items: center;
   justify-content: flex-start;
 }
 
 .overlay__item {
-  flex: 0 0 auto;
+  /* flex: 0 0 auto; */
   display: flex;
   position: relative;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 26px;
-  max-height: 100%;  /* Ensure images fit within the height */
+  /* max-height: 100%;   */
 }
 
 .overlay__img {
   /* position: relative; */
-  flex-grow: 1;  /* Allow image container to grow */
+  flex-grow: 1;
   width: auto;
-  height: 100%;  /* Set dynamic height */
+  width: 100%;
+  height: 100%;
   display: flex;
   padding-bottom: 12px;
   align-items: center;
@@ -93,7 +93,7 @@
 }
 
 .overlay__project-title {
-  backdrop-filter: blur(8px);
+  /* backdrop-filter: blur(8px); */
   font-weight: 200;
   font-size: 14px;
   padding: 0px;
@@ -103,7 +103,7 @@
 
 
 .overlay__postname {
-  margin: 0px;
+  margin: 8px;
   color: black;
   font-size: 14px;
   font-weight: 200;
@@ -119,16 +119,15 @@
 @media (min-width: 800px) {  
   .overlay {
       background-color: transparent;
-      justify-content: center;
+      justify-content: center !important;
   }
   .overlay__content {
-    justify-content: center;
-      flex-direction: row;
+    justify-content: center !important;
+    flex-direction: row;
     overflow: hidden;
 
   }
   .overlay__img {
     height: 300px;
   }
-
 }
